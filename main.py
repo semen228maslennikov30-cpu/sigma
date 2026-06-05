@@ -8,6 +8,7 @@ def about():
 
 @app.route ("/")
 def index():
+    print ("bloger mellstroy")
     return render_template("index.html")
 
 
