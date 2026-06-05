@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 @app.route ("/")
 def index():
+    print ("bloger mellstroy")
     return render_template("index.html")
 
 
