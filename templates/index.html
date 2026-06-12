@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой менеджер задач</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body class="app-body">
+
+    <div class="app-container">
+        <h1 class="app-title">Мои задачи</h1>
+
+        <form action="/add_zadacha" method="POST" class="task-form">
+            <input type="text" name="zadacha" class="task-input" placeholder="Введите новую задачу..." required>
+            <button type="submit" class="btn btn-add">Добавить</button>
+        </form>
+
+        <ul class="task-list">
+            {% for row in data %}
+            <li class="task-item {% if row[3] == 1 %}task-completed{% else %}task-pending{% endif %}">
+
+                <span class="task-text">
+                    {{ row[0] }}
+                </span>
+
+                <div class="task-actions">
+                    {% if row[3] == 0 %}
+                    <form action="/set_done/{{ row[4] }}" method="POST" class="inline-form">
+                        <button type="submit" class="btn btn-action">Сделано</button>
+                    </form>
+                    {% endif %}
+
+                    <form action="/delete_zadacha/{{ row[4] }}" method="POST" class="inline-form">
+                        <button type="submit" class="btn btn-action">Удалить</button>
+                    </form>
+                </div>
+
+            </li>
+            {% else %}
+            <li class="task-empty">У вас пока нет задач.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
