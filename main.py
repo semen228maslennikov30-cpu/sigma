@@ -49,6 +49,3 @@ def set_done(zadacha_id):
 		return redirect('/')
 	else:
 		return redirect('/')
-
-
-app.run()
